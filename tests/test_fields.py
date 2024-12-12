@@ -1,24 +1,24 @@
 from rest_framework.serializers import Serializer
 
-from dseagull.fields import BooleanField
-from dseagull.fields import CharField
-from dseagull.fields import DateField
-from dseagull.fields import DateTimeField
-from dseagull.fields import DictField
-from dseagull.fields import DurationField
-from dseagull.fields import EmailField
-from dseagull.fields import Field
-from dseagull.fields import FloatField
-from dseagull.fields import HStoreField
-from dseagull.fields import IPAddressField
-from dseagull.fields import ImageField
-from dseagull.fields import IntegerField
-from dseagull.fields import JSONField
-from dseagull.fields import ListField
-from dseagull.fields import SlugField
-from dseagull.fields import TimeField
-from dseagull.fields import URLField
-from dseagull.fields import UUIDField
+from dseagull.serializers import BooleanField
+from dseagull.serializers import CharField
+from dseagull.serializers import DateField
+from dseagull.serializers import DateTimeField
+from dseagull.serializers import DictField
+from dseagull.serializers import DurationField
+from dseagull.serializers import EmailField
+from dseagull.serializers import Field
+from dseagull.serializers import FloatField
+from dseagull.serializers import HStoreField
+from dseagull.serializers import IPAddressField
+from dseagull.serializers import ImageField
+from dseagull.serializers import IntegerField
+from dseagull.serializers import JSONField
+from dseagull.serializers import ListField
+from dseagull.serializers import SlugField
+from dseagull.serializers import TimeField
+from dseagull.serializers import URLField
+from dseagull.serializers import UUIDField
 
 
 class TestFieldErrorMessages:
