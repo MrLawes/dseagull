@@ -40,6 +40,10 @@ class Field(DRFField):
                 help_text = f'{help_text}:' if help_text else help_text
                 if 'required' in self.error_messages:
                     self.error_messages['required'] = f'{help_text}{self.error_messages['required']}'
+                if 'null' in self.error_messages:
+                    self.error_messages['null'] = f'{help_text}不能为空。'
+                if 'blank' in self.error_messages:
+                    self.error_messages['blank'] = f'{help_text}不能为空白。'
 
 
 class BooleanField(Field, DRFBooleanField): pass

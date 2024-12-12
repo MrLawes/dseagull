@@ -40,3 +40,21 @@ class TestFieldErrorMessages:
         serializer = ExampleSerializer(data={})
         serializer.is_valid()
         assert serializer.errors['name'][0] == '请填入姓名。'
+
+    def test_null(self):
+
+        class ExampleSerializer(Serializer):
+            name = CharField(help_text='姓名')
+
+        serializer = ExampleSerializer(data={'name': None})
+        serializer.is_valid()
+        assert serializer.errors['name'][0] == '姓名:不能为空。'
+
+    def test_blank(self):
+
+        class ExampleSerializer(Serializer):
+            name = CharField(help_text='姓名')
+
+        serializer = ExampleSerializer(data={'name': ''})
+        serializer.is_valid()
+        assert serializer.errors['name'][0] == '姓名:不能为空白。'
