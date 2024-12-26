@@ -4,6 +4,20 @@
 
 ---
 
+# INSTALLED_APPS
+
+添加 dseagull 到 INSTALLED_APPS 中, 注意必须要放在 rest_framework 前面
+
+```
+INSTALLED_APPS = [
+    ...
+    'dseagull',
+    'rest_framework',
+]
+```
+
+---
+
 # serializers.Field
 
 支持 required=True 时提示带上字段的 help_text 信息
