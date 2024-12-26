@@ -3,12 +3,13 @@ requires = [
     "setuptools>=61.0",
     "Django>=5.0.9",
     "djangorestframework>=3.15.2",
+    "PyJWT>=2.9.0",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "dseagull"
-version = "0.0.4"
+version = "0.0.5"
 authors = [
   { name="chenhaiou", email="haiou_chen@sina.cn" },
 ]

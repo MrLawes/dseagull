@@ -7,7 +7,7 @@ class DseagullConfig(AppConfig):
 
     def ready(self):
         from django.conf import settings
-        # from .checks import jwt_check  # noqa
+        from .checks import jwt_check  # noqa
 
         # 指定默认分页类
         if 'DEFAULT_PAGINATION_CLASS' not in settings.REST_FRAMEWORK:
