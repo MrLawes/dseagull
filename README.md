@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 简化对称加密型的 JWT 编码和解码的过程, 需要配置 JWT_KEY 和 JWT_EXP,
 
     from dseagull.djwt import JWTHS256
-    token = jwt_obj.encode({'username': 'admin'})
-    payload = jwt_obj.decode(token)
+    token = JWTHS256().encode({'username': 'admin'})
+    payload = JWTHS256().decode(token)
 
 ---
