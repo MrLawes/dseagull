@@ -18,6 +18,26 @@ INSTALLED_APPS = [
 
 ---
 
+# REST_FRAMEWORK
+
+不需要配置 REST_FRAMEWORK, 默认配置如下:
+
+```
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'dseagull.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+    
+}
+```
+
+---
+
 # serializers.Field
 
 支持 required=True 时提示带上字段的 help_text 信息
@@ -57,7 +77,7 @@ INSTALLED_APPS = [
 
 ---
 
-# Jwt
+# JWT
 
 简化对称加密型的 JWT 编码和解码的过程, 需要配置 JWT_KEY 和 JWT_EXP,
 

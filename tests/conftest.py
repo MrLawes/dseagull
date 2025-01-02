@@ -10,4 +10,11 @@ def pytest_configure(config):  # noqa
         },
         LANGUAGE_CODE='zh-hans',
         TIME_ZONE='Asia/Shanghai',
+        INSTALLED_APPS=[
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'dseagull',
+            'tests.models',
+            'tests',
+        ],
     )
