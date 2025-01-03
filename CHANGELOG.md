@@ -2,6 +2,13 @@
 
 所有版本的更新记录和重要变更。
 
+## 0.0.8 (2025-01-03)
+
+### 新增
+
+* 默认指定 TEST_REQUEST_DEFAULT_FORMAT 为 json
+* 默认指定 DEFAULT_RENDERER_CLASSES 为 ('rest_framework.renderers.JSONRenderer',)
+
 ## 0.0.7 (2025-01-02)
 
 ### 新增
