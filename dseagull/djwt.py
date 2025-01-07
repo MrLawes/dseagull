@@ -32,3 +32,11 @@ class JWTHS256:
             leeway=60,  # 每个服务器时间不一样, 允许误差60秒
         )
         return payload
+
+
+class JWTUser:
+
+    def __init__(self, user_id: int, user_type: str, headers: dict = {}, *args, **kwargs):  # noqa
+        self.user_id = user_id
+        self.user_type = user_type
+        self.headers = headers
