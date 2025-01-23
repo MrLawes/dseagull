@@ -44,6 +44,8 @@ class Field(DRFField):
                     self.error_messages['null'] = f'{help_text}不能为空。'
                 if 'blank' in self.error_messages:
                     self.error_messages['blank'] = f'{help_text}不能为空白。'
+                if 'invalid' in self.error_messages:
+                    self.error_messages['invalid'] = f'{help_text}请填写合法的整数值。'
 
 
 class BooleanField(Field, DRFBooleanField): pass
