@@ -38,14 +38,13 @@ class Field(DRFField):
             if 'error_messages' not in kwargs:
                 help_text = kwargs.get('help_text') or ''
                 help_text = f'{help_text}:' if help_text else help_text
-                if 'required' in self.error_messages:
-                    self.error_messages['required'] = f'{help_text}{self.error_messages['required']}'
-                if 'null' in self.error_messages:
-                    self.error_messages['null'] = f'{help_text}不能为空。'
-                if 'blank' in self.error_messages:
-                    self.error_messages['blank'] = f'{help_text}不能为空白。'
-                if 'invalid' in self.error_messages:
-                    self.error_messages['invalid'] = f'{help_text}请填写合法的整数值。'
+                for key in self.error_messages:
+                    if key == 'null':
+                        self.error_messages['null'] = f'{help_text}不能为空。'
+                    elif key == 'blank':
+                        self.error_messages['blank'] = f'{help_text}不能为空白。'
+                    else:
+                        self.error_messages[key] = f'{help_text}{self.error_messages[key]}'
 
 
 class BooleanField(Field, DRFBooleanField): pass
