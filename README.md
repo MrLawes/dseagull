@@ -15,7 +15,18 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 ```
+---
 
+# MIDDLEWARE
+
+添加 dseagull.logger.LoggerMiddleware 到 MIDDLEWARE 中, 用于收集日志的字段
+
+```
+MIDDLEWARE = [
+    'dseagull.logger.LoggerMiddleware',
+    ...
+]
+```
 ---
 
 # REST_FRAMEWORK
