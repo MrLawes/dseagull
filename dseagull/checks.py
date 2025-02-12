@@ -10,7 +10,7 @@ def jwt_check(app_configs, **kwargs) -> list:  # noqa
     if not hasattr(settings, 'JWT_KEY'):
         errors.append(
             Critical(
-                f"请配置 jwt 的加密秘钥 JWT_KEY, 比如: JWT_KEY = {uuid.uuid4().hex}{uuid.uuid4().hex}"
+                f"请配置 jwt 的加密秘钥 JWT_KEY, 比如: JWT_KEY = '{uuid.uuid4().hex}{uuid.uuid4().hex}'"
             )
         )
 
