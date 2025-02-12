@@ -1,14 +1,15 @@
 from django.conf import settings
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 from dseagull.checks import jwt_check
 
 
 class TestChecks(TestCase):
 
+    @override_settings(JWT_KEY=None, JWT_EXP=None)
     def test_pagination_settings(self):
-        self.assertFalse(hasattr(settings, 'JWT_KEY'))
-        self.assertFalse(hasattr(settings, 'JWT_EXP'))
+        self.assertIsNone(settings.JWT_KEY)
+        self.assertIsNone(settings.JWT_EXP)
 
         errors = jwt_check(app_configs=None)
         error_msg = ';'.join([error.msg for error in errors])

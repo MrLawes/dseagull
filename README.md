@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 ```
+
 ---
 
 # MIDDLEWARE
@@ -27,6 +28,7 @@ MIDDLEWARE = [
     ...
 ]
 ```
+
 ---
 
 # REST_FRAMEWORK
@@ -46,6 +48,26 @@ REST_FRAMEWORK = {
     
 }
 ```
+
+---
+
+# models.BaseModel
+
+提供基础模型, 添加了 created_at, updated_at
+
+    from django.db import models
+    
+    
+    class BaseModel(models.Model):
+        class Meta:
+            abstract = True
+    
+        created_at = models.DateTimeField(
+            auto_now_add=True, verbose_name='创建时间', db_index=True,
+        )
+        updated_at = models.DateTimeField(
+            auto_now=True, verbose_name='更新时间', db_index=True,
+        )
 
 ---
 

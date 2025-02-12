@@ -17,4 +17,6 @@ def pytest_configure(config):  # noqa
             'tests.models',
             'tests',
         ],
+        JWT_KEY='791dc1e931af432db133af65ca43IloveChloed1c0354908bdb3aadb8ce1600b',
+        JWT_EXP=3600,
     )
