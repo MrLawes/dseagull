@@ -7,12 +7,14 @@ from rest_framework import (
 from rest_framework.viewsets import ModelViewSet
 
 from dseagull.djwt import JWTHS256
+from dseagull.filters import BaseFilterSet
 from dseagull.logger import LoggerMiddleware, thread_local
 from tests.models.modeltest import Person
 
 
-class PersonFilter(filters.FilterSet):
+class PersonFilter(BaseFilterSet):
     last_name = filters.CharFilter()
+    created_at = filters.CharFilter(method='filter_datetime', )
 
     class Meta:
         model = Person
@@ -79,5 +81,18 @@ class TestFilter(TestCase):
         assert response.data['results'] == [{'id': 1, 'first_name': 'name1'}, ]
 
         request = factory.get('/?last_name=last_name2', )
+        response = view(request)
+        assert response.data['results'] == [{'id': 2, 'first_name': 'name2'}, ]
+
+    @pytest.mark.django_db
+    def test_base_filter(self):
+        view = PersonViewSet.as_view({'get': 'list'})
+        factory = RequestFactory()
+        Person.objects.filter(id=1).update(created_at='2025-02-06 00:00')
+        Person.objects.filter(id=2).update(created_at='2025-01-06 00:00')
+        request = factory.get('/?created_at=1738771200,1738771201', )
+        response = view(request)
+        assert response.data['results'] == [{'id': 1, 'first_name': 'name1'}, ]
+        request = factory.get('/?created_at=1735179200,1738771199', )
         response = view(request)
         assert response.data['results'] == [{'id': 2, 'first_name': 'name2'}, ]
