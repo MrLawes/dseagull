@@ -108,6 +108,21 @@ REST_FRAMEWORK = {
 原本提示:This field may not be blank.
 现提示:姓名:不能为空白。
 
+# Filters
+
+支持时间区间的查询
+
+    from dseagull.filters import BaseFilterSet
+    class PersonFilter(BaseFilterSet):
+        last_name = filters.CharFilter()
+        created_at = filters.CharFilter(method='filter_datetime', )
+    
+        class Meta:
+            model = Person
+            fields = ('id',)
+
+在查询时, 参数输入 /?created_at=1738771200,1738771201 即可过滤出对应的数据
+
 ---
 
 # JWT
