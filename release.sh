@@ -4,6 +4,7 @@
 # [pypi]repository = https://upload.pypi.org/legacy/
 # username = __token__
 # password = pypi-yours
+
 rm -rf dist
 pytest
 python3 -m pip install --upgrade build
