@@ -81,11 +81,11 @@ class Command(BaseCommand):
         routers_path = Path(f"{settings.BASE_DIR}/{project_name}/routers.py")
         if not routers_path.exists():
             routers_path.touch()
-            routerspy = (f"from rest_framework import routers\n\n"
-                         f"router = routers.DefaultRouter()\n"
-                         f"router.trailing_slash = '/?'\n"
+            routerspy = ("from rest_framework import routers\n\n"
+                         "router = routers.DefaultRouter()\n"
+                         "router.trailing_slash = '/?'\n"
                          # f"router.routes[2].mapping['put'] = router.routes[2].mapping.pop('patch', None)\n"
-                         f"v1 = '^(?P<version>(1))'\n")
+                         "v1 = '^(?P<version>(1))'\n")
             routers_path.write_text(routerspy)
         write_text = read_text = routers_path.read_text()
 
@@ -100,21 +100,31 @@ class Command(BaseCommand):
         routers_path.write_text(write_text)
 
         # 创建 testcase 文件
-        Path(f"{settings.BASE_DIR}/tests").mkdir(exist_ok=True)
-        test_init_path = Path(f"{settings.BASE_DIR}/tests/__init__.py")
+        Path(f"{settings.BASE_DIR}/app/tests").mkdir(exist_ok=True)
+        test_init_path = Path(f"{settings.BASE_DIR}/app/tests/__init__.py")
         test_init_path.touch(exist_ok=True)
-        read_text = test_init_path.read_text()
-        add_read_text = f"from tests.{lower_name} import {name}TestCase  # noqa"
-        if add_read_text not in read_text:
-            test_init_path.write_text(f'{add_read_text}\n{read_text}')
-        Path(f"{settings.BASE_DIR}/tests/{lower_name}.py").touch(exist_ok=True)
-        # todo testcasepy 还需要优化下
-        testcasepy = (f"from tests.daily_data import DailyDataTestCase\n\n\n"
-                      f"class {name}TestCase(BaseTestCase):\n"
+        data = ("import os\n\n"
+                "import django\n"
+                "import pymysql\n\n"
+                "pymysql.install_as_MySQLdb()\n\n"
+                "os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dashboard.settings')\n\n"
+                "django.setup()\n")
+        test_init_path.write_text(data)
+        Path(f"{settings.BASE_DIR}/app/tests/{lower_name}.py").touch(exist_ok=True)
+        testcasepy = (f"from django.test.testcases import TestCase\n"
+                      f"from rest_framework.test import APIClient\n\n\n"
+                      f"class {name}TestCase(TestCase):\n"
                       f"    def test_cru(self):\n"
-                      f"        r = self.useragency_cdl1.post('/1/v7/{lower_name}s/')\n"
+                      f"        client = APIClient()\n"
+                      f"        r = client.post('/1/v7/{lower_name}s/')\n"
                       f"        self.assertEqual(r.status_code, 201, r.data)\n"
-                      f"        r = self.useragency_cdl1.get('/1/v7/{lower_name}s/')\n"
+                      f"        r = client.get('/1/v7/{lower_name}s/')\n"
                       f"        self.assertEqual(r.status_code, 200, r.data)\n"
                       f"        self.assertEqual(r.data['paging']['total'], 1, r.data)\n")
-        Path(f"{settings.BASE_DIR}/tests/{lower_name}.py").write_text(testcasepy)
+        Path(f"{settings.BASE_DIR}/app/tests/{lower_name}.py").write_text(testcasepy)
+        tests_path = Path(f"{settings.BASE_DIR}/app/tests/tests.py")
+        tests_path.touch(exist_ok=True)
+        read_text = tests_path.read_text()
+        add_read_text = f"from app.tests.{lower_name} import {name}TestCase  # noqa"
+        if add_read_text not in read_text:
+            tests_path.write_text(f'{add_read_text}\n{read_text}')
