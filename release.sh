@@ -5,6 +5,7 @@
 # username = __token__
 # password = pypi-yours
 
+rm -rf dist
 pytest
 python3 -m pip install --upgrade build
 python3 -m build

@@ -2,11 +2,18 @@
 
 所有版本的更新记录和重要变更。
 
+## 0.0.19 (2025-02-13)
+
+### 新增
+
+* 提供新的 Command 命令: python manage.py startmodel -n Apple
+
 ## 0.0.15 (2025-02-12)
 
 ### 新增
 
 * 提供基础模型 BaseModel
+* 提供基础查询过滤对象 BaseFilterSet
 
 ## 0.0.12 (2025-02-05)
 

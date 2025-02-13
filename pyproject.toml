@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dseagull"
-version = "0.0.16"
+version = "0.0.19"
 authors = [
   { name="chenhaiou", email="haiou_chen@sina.cn" },
 ]
@@ -20,6 +20,7 @@ dependencies = [
     "PyJWT>=2.9.0",
     "django-cors-headers>=4.6.0",
     "pymysql>=1.1.1",
+    "django-filter>=24.3",
 ]
 description = "快速构建 RESTful API"
 readme = "README.md"
@@ -30,7 +31,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-[project.urls]
-Changelog = "https://github.com/MrLawes/dseagull/blob/main/CHANGELOG.md"
-Homepage = "https://github.com/MrLawes/dseagull"
-Issues = "https://github.com/MrLawes/dseagull/issues"
+# [project.urls]
+# Changelog = "https://github.com/MrLawes/dseagull/blob/main/CHANGELOG.md"
+# Homepage = "https://github.com/MrLawes/dseagull"
+# Issues = "https://github.com/MrLawes/dseagull/issues"

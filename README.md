@@ -110,6 +110,33 @@ REST_FRAMEWORK = {
 
 ---
 
+# Filters
+
+支持时间区间的查询
+
+    from dseagull.filters import BaseFilterSet
+    class PersonFilter(BaseFilterSet):
+        last_name = filters.CharFilter()
+        created_at = filters.CharFilter(method='filter_datetime', )
+    
+        class Meta:
+            model = Person
+            fields = ('id',)
+
+在查询时, 参数输入 /?created_at=1738771200,1738771201 即可过滤出对应的数据
+
+---
+
+# Commands
+
+## startmodel
+
+    python manage.py startmodel -n Apple
+
+执行上面的命令, 可以自动创建和修改标准化的 model, serializer, viewset, routers
+
+---
+
 # JWT
 
 简化对称加密型的 JWT 编码和解码的过程, 需要配置 JWT_KEY 和 JWT_EXP,
