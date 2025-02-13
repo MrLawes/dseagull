@@ -116,9 +116,9 @@ class Command(BaseCommand):
                       f"class {name}TestCase(TestCase):\n"
                       f"    def test_cru(self):\n"
                       f"        client = APIClient()\n"
-                      f"        r = client.post('/1/v7/{lower_name}s/')\n"
+                      f"        r = client.post('/1/{lower_name}s/')\n"
                       f"        self.assertEqual(r.status_code, 201, r.data)\n"
-                      f"        r = client.get('/1/v7/{lower_name}s/')\n"
+                      f"        r = client.get('/1/{lower_name}s/')\n"
                       f"        self.assertEqual(r.status_code, 200, r.data)\n"
                       f"        self.assertEqual(r.data['paging']['total'], 1, r.data)\n")
         Path(f"{settings.BASE_DIR}/app/tests/{lower_name}.py").write_text(testcasepy)
