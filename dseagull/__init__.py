@@ -1,0 +1,1 @@
+from dseagull import django

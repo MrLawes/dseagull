@@ -13,7 +13,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dseagull"
-version = "0.0.23"
+version = "0.0.24"
 authors = [
   { name="chenhaiou", email="haiou_chen@sina.cn" },
 ]
