@@ -101,17 +101,11 @@ class Command(BaseCommand):
 
         # 创建 testcase 文件
         Path(f"{settings.BASE_DIR}/app/tests").mkdir(exist_ok=True)
-        test_init_path = Path(f"{settings.BASE_DIR}/app/tests/__init__.py")
-        test_init_path.touch(exist_ok=True)
-        data = ("import os\n\n"
-                "import django\n"
-                "import pymysql\n\n"
-                "pymysql.install_as_MySQLdb()\n\n"
-                "os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dashboard.settings')\n\n"
-                "django.setup()\n")
-        test_init_path.write_text(data)
+        Path(f"{settings.BASE_DIR}/app/tests/__init__.py").touch(exist_ok=True)
         Path(f"{settings.BASE_DIR}/app/tests/{lower_name}.py").touch(exist_ok=True)
-        testcasepy = (f"from django.test.testcases import TestCase\n"
+        testcasepy = (f"import dseagull\n\n"
+                      f"dseagull.django.setup('{project_name}.settings') # noqa\n\n"
+                      f"from django.test.testcases import TestCase\n"
                       f"from rest_framework.test import APIClient\n\n\n"
                       f"class {name}TestCase(TestCase):\n"
                       f"    def test_cru(self):\n"

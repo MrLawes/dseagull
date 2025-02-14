@@ -53,7 +53,7 @@ REST_FRAMEWORK = {
 
 # models.BaseModel
 
-提供基础模型, 添加了 created_at, updated_at
+提供基础模型, 添加了 created, updated
 
     from django.db import models
     
@@ -62,10 +62,10 @@ REST_FRAMEWORK = {
         class Meta:
             abstract = True
     
-        created_at = models.DateTimeField(
+        created = models.DateTimeField(
             auto_now_add=True, verbose_name='创建时间', db_index=True,
         )
-        updated_at = models.DateTimeField(
+        updated = models.DateTimeField(
             auto_now=True, verbose_name='更新时间', db_index=True,
         )
 
@@ -117,13 +117,13 @@ REST_FRAMEWORK = {
     from dseagull.filters import BaseFilterSet
     class PersonFilter(BaseFilterSet):
         last_name = filters.CharFilter()
-        created_at = filters.CharFilter(method='filter_datetime', )
+        created = filters.CharFilter(method='filter_datetime', )
     
         class Meta:
             model = Person
             fields = ('id',)
 
-在查询时, 参数输入 /?created_at=1738771200,1738771201 即可过滤出对应的数据
+在查询时, 参数输入 /?created=1738771200,1738771201 即可过滤出对应的数据
 
 ---
 

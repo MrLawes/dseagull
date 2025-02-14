@@ -14,7 +14,7 @@ from tests.models.modeltest import Person
 
 class PersonFilter(BaseFilterSet):
     last_name = filters.CharFilter()
-    created_at = filters.CharFilter(method='filter_datetime', )
+    created = filters.CharFilter(method='filter_datetime', )
 
     class Meta:
         model = Person
@@ -88,11 +88,11 @@ class TestFilter(TestCase):
     def test_base_filter(self):
         view = PersonViewSet.as_view({'get': 'list'})
         factory = RequestFactory()
-        Person.objects.filter(id=1).update(created_at='2025-02-06 00:00')
-        Person.objects.filter(id=2).update(created_at='2025-01-06 00:00')
-        request = factory.get('/?created_at=1738771200,1738771201', )
+        Person.objects.filter(id=1).update(created='2025-02-06 00:00')
+        Person.objects.filter(id=2).update(created='2025-01-06 00:00')
+        request = factory.get('/?created=1738771200,1738771201', )
         response = view(request)
         assert response.data['results'] == [{'id': 1, 'first_name': 'name1'}, ]
-        request = factory.get('/?created_at=1735179200,1738771199', )
+        request = factory.get('/?created=1735179200,1738771199', )
         response = view(request)
         assert response.data['results'] == [{'id': 2, 'first_name': 'name2'}, ]

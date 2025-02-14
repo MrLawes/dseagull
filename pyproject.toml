@@ -4,12 +4,16 @@ requires = [
     "Django>=5.0.9",
     "djangorestframework>=3.15.2",
     "PyJWT>=2.9.0",
+    "django-cors-headers>=4.6.0",
+    "pymysql>=1.1.1",
+    "django-filter>=24.3",
+    "coreapi>=2.3.3",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "dseagull"
-version = "0.0.21"
+version = "0.0.23"
 authors = [
   { name="chenhaiou", email="haiou_chen@sina.cn" },
 ]
@@ -21,6 +25,7 @@ dependencies = [
     "django-cors-headers>=4.6.0",
     "pymysql>=1.1.1",
     "django-filter>=24.3",
+    "coreapi>=2.3.3",
 ]
 description = "快速构建 RESTful API"
 readme = "README.md"
