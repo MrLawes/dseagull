@@ -31,6 +31,17 @@ MIDDLEWARE = [
 
 ---
 
+添加 dseagull.middleware.BaseMiddleware 到 MIDDLEWARE 中, 用于请求的基本输出
+
+```
+MIDDLEWARE = [
+    'dseagull.middleware.BaseMiddleware',
+    ...
+]
+```
+
+---
+
 # REST_FRAMEWORK
 
 不需要配置 REST_FRAMEWORK, 默认配置如下:

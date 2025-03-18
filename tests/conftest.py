@@ -19,4 +19,8 @@ def pytest_configure(config):  # noqa
         ],
         JWT_KEY='791dc1e931af432db133af65ca43IloveChloed1c0354908bdb3aadb8ce1600b',
         JWT_EXP=3600,
+        MIDDLEWARE=[
+            'dseagull.logger.LoggerMiddleware',
+            'dseagull.middleware.BaseMiddleware',
+        ],
     )

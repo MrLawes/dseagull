@@ -8,12 +8,14 @@ requires = [
     "pymysql>=1.1.1",
     "django-filter>=24.3",
     "coreapi>=2.3.3",
+    "mysqlclient>=2.2.6",
+    "django-redis>=5.4.0",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "dseagull"
-version = "0.0.24"
+version = "0.0.27"
 authors = [
   { name="chenhaiou", email="haiou_chen@sina.cn" },
 ]
@@ -26,6 +28,8 @@ dependencies = [
     "pymysql>=1.1.1",
     "django-filter>=24.3",
     "coreapi>=2.3.3",
+    "mysqlclient>=2.2.6",
+    "django-redis>=5.4.0",
 ]
 description = "快速构建 RESTful API"
 readme = "README.md"
