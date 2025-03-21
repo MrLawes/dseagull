@@ -20,4 +20,16 @@ def jwt_check(app_configs, **kwargs) -> list:  # noqa
                 "请配置 jwt 的过期时间(单位秒) JWT_EXP, 比如: JWT_EXP = 60 * 60 * 24 * 30"
             )
         )
+
+    logging = getattr(settings, 'LOGGING', {})
+    logger = logging.get('loggers', {}).get('django.request')  # todo 提示配置 LOGGING 和 DJANGO_REQUEST_ERROR_WEBHOOK, 并提供一个模板
+    if not logger:
+        webhook = getattr(settings, 'DJANGO_REQUEST_ERROR_WEBHOOK', None)
+        if webhook is None:
+            errors.append(
+                Critical(
+                    f"请配置 DJANGO_REQUEST_ERROR_WEBHOOK, 目前只支持钉钉机器人的 webhook, 配置文档: https://open.dingtalk.com/document/robots/custom-robot-access, 安全设置->自定义关键词填入 Seagull"
+                )
+            )
+
     return errors

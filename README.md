@@ -1,6 +1,32 @@
 # Dseagull
 
-快速构建 RESTful API
+可快速构建 RESTful API, 简化配置, 减少代码:
+
+✅ 通过一行命令创建数据模型, 及对应的 serializer, viewset, routers 和 testcase
+
+✅ 省去配置 REST_FRAMEWORK, 默认配置分页类, 文档类等
+
+✅ 简化 JWT
+
+✅ 接口数据校验器支持中文提示
+
+✅ 接口过滤支持时间范围查询
+
+✅ 接口全局 request_id 的自动生成
+
+✅ 接口 500 异常时, 报警通知到钉钉
+
+✅ 中间件请求日志默认输出
+
+✅ 提供基础的数据模型
+
+❌ 接口默认用户身份认证
+
+❌ 接口默认进行权限判断
+
+❌ 统一的日志格式输出
+
+❌ 支持 SAE 的发布命令
 
 ---
 
@@ -150,10 +176,25 @@ REST_FRAMEWORK = {
 
 # JWT
 
-简化对称加密型的 JWT 编码和解码的过程, 需要配置 JWT_KEY 和 JWT_EXP,
+简化对称加密型的 JWT 编码和解码的过程, 需要配置 JWT_KEY 和 JWT_EXP
 
     from dseagull.djwt import JWTHS256
     token = JWTHS256().encode({'username': 'admin'})
     payload = JWTHS256().decode(token)
 
 ---
+
+# Settings
+
+---
+
+## 报警
+
+---
+支持钉钉报警: DJANGO_REQUEST_ERROR_WEBHOOK 可配置钉钉报警的 webhook
+
+---
+
+
+
+
