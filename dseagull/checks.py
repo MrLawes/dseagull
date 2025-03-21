@@ -36,7 +36,7 @@ def jwt_check(app_configs, **kwargs) -> list:  # noqa
         }
         errors.append(
             Critical(
-                f"请为 LOGGING 添加配置 django.request: \n{json.dumps(conf)}"
+                f"请为 LOGGING 添加配置 django.request: \n{json.dumps(conf, indent=4)}"
             )
         )
 
