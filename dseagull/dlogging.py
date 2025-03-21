@@ -30,3 +30,6 @@ class DjangoRequestErrorLOGGINGHandler(logging.Handler):
             pass
         else:
             print(f"[DjangoRequestErrorLOGGINGHandler] {r.content.decode()}")
+
+
+LOGGER = logging.getLogger('django.request')
