@@ -1,3 +1,4 @@
+import json
 import uuid
 
 from django.conf import settings
@@ -24,6 +25,22 @@ def jwt_check(app_configs, **kwargs) -> list:  # noqa
     logging = getattr(settings, 'LOGGING', {})
     logger = logging.get('loggers', {}).get('django.request')  # todo 提示配置 LOGGING 和 DJANGO_REQUEST_ERROR_WEBHOOK, 并提供一个模板
     if not logger:
+        conf = {
+            'version': 1,
+            'handlers': {
+                'webhook': {'level': 'ERROR', 'class': 'dseagull.dlogging.DjangoRequestErrorLOGGINGHandler'},
+                'console': {'level': 'INFO', 'class': 'logging.StreamHandler', },
+            },
+            'loggers': {
+                'django.request': {'handlers': ['console', 'webhook'], 'level': 'INFO', 'propagate': False, 'encoding': 'utf8'}
+            }
+        }
+        errors.append(
+            Critical(
+                f"请为 LOGGING 添加配置 django.request: \n{json.dumps(conf, indent=4)}"
+            )
+        )
+
         webhook = getattr(settings, 'DJANGO_REQUEST_ERROR_WEBHOOK', None)
         if webhook is None:
             errors.append(

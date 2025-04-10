@@ -191,10 +191,10 @@ REST_FRAMEWORK = {
 ## 报警
 
 ---
-支持钉钉报警: DJANGO_REQUEST_ERROR_WEBHOOK 可配置钉钉报警的 webhook
+支持接口 500 异常的钉钉报警: DJANGO_REQUEST_ERROR_WEBHOOK 可配置钉钉报警的 webhook
+同样支持手动触发报警:
+
+    from dseagull.dlogging import LOGGER
+    LOGGER.error("异常提示")
 
 ---
-
-
-
-

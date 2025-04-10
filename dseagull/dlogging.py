@@ -13,12 +13,15 @@ class DjangoRequestErrorLOGGINGHandler(logging.Handler):
         if not webhook:
             return
 
+        msg = record.msg or ""
+        if msg.startswith("Task %") or msg.startswith("%s: %s"):
+            record.msg = traceback.format_exc().replace('\n', '\n\n')
+
         payload = {
             "msgtype": "markdown",
             "markdown": {
                 "title": "Seagull",
-                "text": f"```{traceback.format_exc()}```",
-
+                "text": record.msg,
             }
         }
         # 钉钉文档: https://open.dingtalk.com/document/orgapp/custom-robot-access
@@ -27,3 +30,6 @@ class DjangoRequestErrorLOGGINGHandler(logging.Handler):
             pass
         else:
             print(f"[DjangoRequestErrorLOGGINGHandler] {r.content.decode()}")
+
+
+LOGGER = logging.getLogger('django.request')
