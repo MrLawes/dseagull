@@ -23,13 +23,18 @@ def jwt_check(app_configs, **kwargs) -> list:  # noqa
         )
 
     logging = getattr(settings, 'LOGGING', {})
-    logger = logging.get('loggers', {}).get('django.request')  # todo 提示配置 LOGGING 和 DJANGO_REQUEST_ERROR_WEBHOOK, 并提供一个模板
+    logger = logging.get('loggers', {}).get('django.request')
     if not logger:
         conf = {
             'version': 1,
+            'formatters': {
+                'django.request': {
+                    'format': '[%(levelname)1.1s %(asctime)s %(module)s.%(funcName)s:%(lineno)d];%(message)s'
+                },
+            },
             'handlers': {
                 'webhook': {'level': 'ERROR', 'class': 'dseagull.dlogging.DjangoRequestErrorLOGGINGHandler'},
-                'console': {'level': 'INFO', 'class': 'logging.StreamHandler', },
+                'console': {'level': 'INFO', 'class': 'logging.StreamHandler', 'formatter': 'django.request', },
             },
             'loggers': {
                 'django.request': {'handlers': ['console', 'webhook'], 'level': 'INFO', 'propagate': False, 'encoding': 'utf8'}

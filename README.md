@@ -20,6 +20,8 @@
 
 ✅ 提供基础的数据模型
 
+✅ 支持 SAE 健康检测
+
 ❌ 接口默认用户身份认证
 
 ❌ 接口默认进行权限判断
@@ -196,5 +198,16 @@ REST_FRAMEWORK = {
 
     from dseagull.dlogging import LOGGER
     LOGGER.error("异常提示")
+
+---
+
+# SAE
+
+配置健康检测接口, 配置如下, 即可访问 /sae/checkpreload , 响应内容为 successful
+
+    from dseagull.sae import include_sae_urls
+    urlpatterns = [
+        url(r'sae/', include_sae_urls()),
+    ]
 
 ---
