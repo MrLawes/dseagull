@@ -149,6 +149,20 @@ REST_FRAMEWORK = {
 
 ---
 
+为了避免和 /docs 展示区分, 也可以使用 error_help_text 和 help_text 区分
+
+    from rest_framework.serializers import Serializer
+    class ExampleSerializer(Serializer):
+        name = field(help_text='姓名(string)', error_help_text="姓名")
+    ExampleSerializer(data={'name': ''}).is_valid()
+
+原本提示:This field may not be blank.
+现提示:姓名:不能为空白。
+
+/docs 中则展示 姓名(string)
+
+---
+
 # Filters
 
 支持时间区间的查询
@@ -207,7 +221,7 @@ REST_FRAMEWORK = {
 
     from dseagull.sae import include_sae_urls
     urlpatterns = [
-        url(r'sae/', include_sae_urls()),
+        url(r'^sae/', include_sae_urls()),
     ]
 
 ---

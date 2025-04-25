@@ -41,8 +41,21 @@ class TestFieldErrorMessages:
         serializer.is_valid()
         assert serializer.errors['name'][0] == '请填入姓名。'
 
-    def test_null(self):
+        class ExampleSerializer(Serializer):
+            name = field(help_text='姓名(string)', error_help_text="姓名A")
 
+        serializer = ExampleSerializer(data={})
+        serializer.is_valid()
+        assert serializer.errors['name'][0] == '姓名A:这个字段是必填项。'
+
+        class ExampleSerializer(Serializer):
+            name = field(error_help_text="姓名B")
+
+        serializer = ExampleSerializer(data={})
+        serializer.is_valid()
+        assert serializer.errors['name'][0] == '姓名B:这个字段是必填项。'
+
+    def test_null(self):
         class ExampleSerializer(Serializer):
             name = CharField(help_text='姓名')
 
@@ -51,7 +64,6 @@ class TestFieldErrorMessages:
         assert serializer.errors['name'][0] == '姓名:不能为空。'
 
     def test_blank(self):
-
         class ExampleSerializer(Serializer):
             name = CharField(help_text='姓名')
 

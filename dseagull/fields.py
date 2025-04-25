@@ -32,11 +32,17 @@ from rest_framework.serializers import UUIDField as DRFUUIDField
 
 class Field(DRFField):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, error_help_text='', *args, **kwargs):
+
+        if "error_help_text" in kwargs and not kwargs.get('help_text'):
+            kwargs["help_text"] = kwargs["error_help_text"]
         super().__init__(*args, **kwargs)
+        kwargs["error_help_text"] = error_help_text
         if settings.LANGUAGE_CODE == 'zh-hans':
             if 'error_messages' not in kwargs:
-                help_text = kwargs.get('help_text') or ''
+                help_text = kwargs.get('error_help_text') or ''
+                if not help_text:
+                    help_text = kwargs.get('help_text') or ''
                 help_text = f'{help_text}:' if help_text else help_text
                 for key in self.error_messages:
                     if key == 'null':
