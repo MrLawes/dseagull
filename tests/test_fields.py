@@ -69,4 +69,11 @@ class TestFieldErrorMessages:
 
         serializer = ExampleSerializer(data={'name': ''})
         serializer.is_valid()
+        assert serializer.errors == {}
+
+        class ExampleSerializer(Serializer):
+            name = CharField(help_text='姓名', allow_blank=False)
+
+        serializer = ExampleSerializer(data={'name': ''})
+        serializer.is_valid()
         assert serializer.errors['name'][0] == '姓名:不能为空白。'

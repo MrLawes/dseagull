@@ -56,7 +56,12 @@ class Field(DRFField):
 class BooleanField(Field, DRFBooleanField): pass
 
 
-class CharField(Field, DRFCharField): pass
+class CharField(Field, DRFCharField):
+
+    def __init__(self, **kwargs):
+        if "allow_blank" not in kwargs:
+            kwargs["allow_blank"] = True
+        super().__init__(**kwargs)
 
 
 class ChoiceField(Field, DRFChoiceField): pass

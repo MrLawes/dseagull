@@ -1,4 +1,3 @@
-from rest_framework.fields import ChoiceField  # noqa
 from rest_framework.fields import DecimalField  # noqa
 from rest_framework.fields import FileField  # noqa
 from rest_framework.fields import FilePathField  # noqa
@@ -11,6 +10,7 @@ from rest_framework.fields import SerializerMethodField  # noqa
 
 from dseagull.fields import BooleanField  # noqa
 from dseagull.fields import CharField  # noqa
+from dseagull.fields import ChoiceField  # noqa
 from dseagull.fields import DateField  # noqa
 from dseagull.fields import DateTimeField  # noqa
 from dseagull.fields import DictField  # noqa
