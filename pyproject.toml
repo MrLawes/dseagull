@@ -8,14 +8,13 @@ requires = [
     "pymysql>=1.1.1",
     "django-filter>=24.3",
     "coreapi>=2.3.3",
-    "mysqlclient>=2.2.6",
     "django-redis>=5.4.0",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "dseagull"
-version = "0.0.40"
+version = "0.0.41"
 authors = [
   { name="chenhaiou", email="haiou_chen@sina.cn" },
 ]
@@ -28,7 +27,6 @@ dependencies = [
     "pymysql>=1.1.1",
     "django-filter>=24.3",
     "coreapi>=2.3.3",
-    "mysqlclient>=2.2.6",
     "django-redis>=5.4.0",
 ]
 description = "快速构建 RESTful API"
@@ -44,3 +42,7 @@ classifiers = [
 # Changelog = "https://github.com/MrLawes/dseagull/blob/main/CHANGELOG.md"
 # Homepage = "https://github.com/MrLawes/dseagull"
 # Issues = "https://github.com/MrLawes/dseagull/issues"
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
