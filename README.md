@@ -225,3 +225,13 @@ REST_FRAMEWORK = {
     ]
 
 ---
+
+# 短信功能
+
+统一的发送短信
+
+    from dseagull.sms import SMS
+    sms = SMS(your_host, your_acount, your_password )
+    sms.send(["135xxxxxxx1", "135xxxxxxx2"], "短信内容")
+
+---

@@ -9,12 +9,14 @@ requires = [
     "django-filter>=24.3",
     "coreapi>=2.3.3",
     "django-redis>=5.4.0",
+    "httpx>=0.28.1",
+    "ipython>=9.13.0",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "dseagull"
-version = "0.0.41"
+version = "0.0.42"
 authors = [
   { name="chenhaiou", email="haiou_chen@sina.cn" },
 ]
@@ -28,6 +30,8 @@ dependencies = [
     "django-filter>=24.3",
     "coreapi>=2.3.3",
     "django-redis>=5.4.0",
+    "httpx>=0.28.1",
+    "ipython>=9.13.0",
 ]
 description = "快速构建 RESTful API"
 readme = "README.md"
