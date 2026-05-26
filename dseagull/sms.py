@@ -34,7 +34,15 @@ class SMS:
     def send(self, to_list: list[tuple]):
         """
         :param to_list: [('签名', '手机号', 'uuid', '短信内容'), ]
-        :return:
+        :return:  200, {
+            'success': False,
+            'transactionId': '5e823a65da214046b9a682d9b27f0c12',
+            'failList': [{
+                'uuid': '67c1416dcbb04d078886192343e1147f',
+                'errorDesc': 'ILLEGAL_IP_ERROR',
+                'errorCode': 'SMS00003',
+                'mobile': '13544444444'
+            }],
         """
         payload = self.create_payload(to_list=to_list)
         if 'hbsmservice' in self.host:
