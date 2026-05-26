@@ -21,10 +21,10 @@ class SMS:
             password = f"{self.account}{self.password}{transaction_id}"
             payload['password'] = hashlib.md5(f"{password}".encode()).hexdigest()
             payload['list'] = []
-            for sign_name, mobile, content in kwargs['to_list']:
+            for sign_name, mobile, uuid_str, content in kwargs['to_list']:
                 payload['list'].append({
                     "mobile": mobile,
-                    "uuid": uuid.uuid4().hex,
+                    "uuid": uuid_str,
                     'content': f"【{sign_name}】{content}",
                 })
         else:
@@ -33,7 +33,7 @@ class SMS:
 
     def send(self, to_list: list[tuple]):
         """
-        :param to_list: [('签名', '手机号', '短信内容'), ]
+        :param to_list: [('签名', '手机号', 'uuid', '短信内容'), ]
         :return:
         """
         payload = self.create_payload(to_list=to_list)

@@ -16,7 +16,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dseagull"
-version = "0.0.44"
+version = "0.0.45"
 authors = [
   { name="chenhaiou", email="haiou_chen@sina.cn" },
 ]
