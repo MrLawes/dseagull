@@ -40,7 +40,7 @@ class SMS:
         if 'hbsmservice' in self.host:
             r = httpx.post(f"{self.host}/sms/v2/send-different", json=payload)
             results = r.json()
-            results['results'] = [
+            results['successList'] = [
                 {
                     "mobile": item['mobile'],  # noqa
                     "uuid": item['uuid'],  # noqa
